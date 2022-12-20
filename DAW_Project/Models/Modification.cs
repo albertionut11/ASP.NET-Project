@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DAW_Project.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Proiect_DAW.Models
 {
@@ -10,5 +11,7 @@ namespace Proiect_DAW.Models
         public string Editor_Name { get; set; }
         public DateTime Post_Date { get; set; }
         public string New_Content { get; set; }
+        public string? UserID { get; set; }
+        public virtual ApplicationUser? User { get; set; }
     }
 }
