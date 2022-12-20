@@ -12,7 +12,6 @@ namespace Proiect_DAW.Models
         public string Modificator_Name { get; set; }
         public DateTime Post_Date { get; set; }
         public string New_Content { get; set; }
-        public virtual Article Article { get; set; }
         public string? UserID { get; set; }
         public virtual ApplicationUser? User { get; set; }
 

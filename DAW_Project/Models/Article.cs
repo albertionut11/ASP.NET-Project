@@ -14,9 +14,8 @@ namespace Proiect_DAW.Models
         public string Content { get; set; }
         public string? UserID { get; set; }
         public virtual ApplicationUser? User { get; set; }
-        public int Domain_Id { get; set; }
 
-        public virtual Domain Domain { get; set; }
+        public int Domain_id { get; set; }
 
     }
 }
