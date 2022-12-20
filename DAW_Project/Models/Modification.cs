@@ -7,6 +7,7 @@ namespace Proiect_DAW.Models
     {
         [Key]
         public int Modification_Id { get; set; }
+
         public int Article_Id { get; set; }
         public string Modificator_Name { get; set; }
         public DateTime Post_Date { get; set; }
@@ -14,5 +15,6 @@ namespace Proiect_DAW.Models
         public virtual Article Article { get; set; }
         public string? UserID { get; set; }
         public virtual ApplicationUser? User { get; set; }
+
     }
 }

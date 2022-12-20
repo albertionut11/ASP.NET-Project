@@ -1,0 +1,23 @@
+﻿<h2>AFISARE ARTICOLE</h2>
+
+@foreach (var item in ViewBag.Articles)
+{
+    <div class="card" style="width: 18rem;">
+      
+        <div class="card-body">
+            
+            <h5 class="card-title">@item.Title </h5> 
+
+            <div>@item.Content</div>
+           
+            <div>@item.Editor_Name</div>
+
+            <div>@item.Modify_count</div>
+
+            <div>@item.Post_Date</div>
+
+
+            
+        </div>
+    </div>
+}

@@ -17,5 +17,6 @@ namespace Proiect_DAW.Models
         public int Domain_Id { get; set; }
 
         public virtual Domain Domain { get; set; }
+
     }
 }
