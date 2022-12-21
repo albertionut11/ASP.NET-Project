@@ -1,7 +1,7 @@
 ﻿using DAW_Project.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace Proiect_DAW.Models
+namespace DAW_Project.Models
 {
     public class Domain
     {
