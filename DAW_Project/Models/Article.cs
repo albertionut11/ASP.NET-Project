@@ -1,5 +1,7 @@
 ﻿using DAW_Project.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DAW_Project.Models
 {
@@ -20,8 +22,11 @@ namespace DAW_Project.Models
         public virtual Domain Domain { get; set; }
 
         public virtual ICollection<Modification> Modifications { get; set; }
-        
-        
+
+        [NotMapped]
+        public IEnumerable<SelectListItem>? Dom { get; set; }
+
+
 
     }
 }

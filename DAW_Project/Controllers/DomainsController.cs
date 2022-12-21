@@ -43,18 +43,19 @@ namespace DAW_Project.Controllers
         [HttpPost]
         public ActionResult New(Domain dom)
         {
-            if (ModelState.IsValid)
+            try
             {
                 db.Domains.Add(dom);
                 db.SaveChanges();
                 TempData["message"] = "Domeniul a fost adaugat";
                 return RedirectToAction("Index");
             }
-
-            else
+            catch (DataException)
             {
-                return View(dom);
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
+            return View(dom);
+            
         }
 
         public ActionResult Edit(int id)
