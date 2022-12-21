@@ -1,7 +1,7 @@
 ﻿using DAW_Project.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace Proiect_DAW.Models
+namespace DAW_Project.Models
 {
     public class Modification
     {
@@ -16,6 +16,8 @@ namespace Proiect_DAW.Models
         public string? UserID { get; set; }
         public virtual ApplicationUser? User { get; set; }
         public virtual Article Article { get; set; }
+        
+         
 
     }
 }
