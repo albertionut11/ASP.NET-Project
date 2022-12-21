@@ -1,4 +1,4 @@
-﻿using DAW_Project.Models;
+using DAW_Project.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -44,6 +44,4 @@ namespace DAW_Project.Data
 
 
     }
-
-   
 }

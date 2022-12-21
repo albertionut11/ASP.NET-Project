@@ -1,0 +1,22 @@
+﻿@model DAW_Project.Models.Domain
+@{
+    ViewBag.Title = "Editare domeniu";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm(controllerName: "Domains", actionName: "Edit", method: FormMethod.Post,
+      routeValues: new { id = Model.Id }))
+{
+    @Html.Label("Domain_name", "Denumire domeniu")
+    <br />
+    @Html.Editor("Domain_name")
+
+    @Html.ValidationMessageFor(m => m.Domain_name, null, new { @class = "text-danger" })
+    <br />
+
+    <br />
+
+    <button class="btn btn-success" type="submit">Modifica domeniul</button>
+}

@@ -8,8 +8,8 @@ namespace DAW_Project.Models
         [Key] 
         public int Id { get; set; }
         [Required(ErrorMessage = "Numele domeniului este obligatoriu")]
-        public string Domain_name { get; set; }
-        public string Domain_description { get; set; }
+        public string? Domain_name { get; set; }
+        public string? Domain_description { get; set; }
         public string? UserID { get; set; }
 
         public virtual ApplicationUser? User { get; set; }

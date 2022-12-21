@@ -16,7 +16,7 @@ namespace DAW_Project.Models
         public string? UserID { get; set; }
         public virtual ApplicationUser? User { get; set; }
         [Required(ErrorMessage = "Domeniul articolului este obligatoriu!")]
-        public int Domain_id { get; set; }
+        public int? Domain_id { get; set; }
         public virtual Domain Domain { get; set; }
 
         public virtual ICollection<Modification> Modifications { get; set; }

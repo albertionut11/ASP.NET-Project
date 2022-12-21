@@ -1,0 +1,26 @@
+﻿@model DAW_Project.Models.Domain
+
+
+@{
+    ViewBag.Title = "Adaugare domeniu";
+}
+
+
+<h2>Adaugare Domeniu</h2>
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Domains", method: FormMethod.Post))
+{
+
+    @Html.Label("Domain_name", "Denumire domeniu")
+    <br />
+
+    @Html.TextBox("Domain_name", null, new { @class = "form-control" })
+
+    @Html.ValidationMessageFor(m => m.Domain_name, null, new { @class = "text-danger" })
+    <br />
+    <br />
+
+    <button class="btn btn-success" type="submit">Adauga domeniu</button>
+
+}
+
