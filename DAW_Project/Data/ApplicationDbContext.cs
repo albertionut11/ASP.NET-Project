@@ -1,7 +1,6 @@
 ﻿using DAW_Project.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Proiect_DAW.Models;
 
 namespace DAW_Project.Data
 {
@@ -16,4 +15,6 @@ namespace DAW_Project.Data
         public DbSet<Domain> Domains { get; set; }
 
     }
+
+
 }

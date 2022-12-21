@@ -1,7 +1,7 @@
 ﻿using DAW_Project.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace Proiect_DAW.Models
+namespace DAW_Project.Models
 {
     public class Article
     {
@@ -16,7 +16,7 @@ namespace Proiect_DAW.Models
         public string? UserID { get; set; }
         public virtual ApplicationUser? User { get; set; }
         [Required(ErrorMessage = "Domeniul articolului este obligatoriu!")]
-        public int Domain_id { get; set; }
+        public int? Domain_id { get; set; }
         public virtual Domain Domain { get; set; }
 
     }
