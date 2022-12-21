@@ -19,5 +19,9 @@ namespace DAW_Project.Models
         public int? Domain_id { get; set; }
         public virtual Domain Domain { get; set; }
 
+        public virtual ICollection<Modification> Modifications { get; set; }
+        
+        
+
     }
 }

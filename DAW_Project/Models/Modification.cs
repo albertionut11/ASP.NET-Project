@@ -16,6 +16,8 @@ namespace DAW_Project.Models
         public string? UserID { get; set; }
         public virtual ApplicationUser? User { get; set; }
         public virtual Article Article { get; set; }
+        
+         
 
     }
 }

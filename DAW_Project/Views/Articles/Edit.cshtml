@@ -1,0 +1,31 @@
+﻿@model DAW_Project.Models.Article
+
+<h2 class="text-center mt-5">Editare articol</h2>
+
+<div>
+
+    <form method="post" action="/Articles/Edit">
+        <label>Titlu articol</label>
+        <br />
+        <input type="text" name="Title" value="@Model.Title" />
+        <br /><br />
+        <label>Continut articol</label>
+        <br />
+        <input type="text" name="Content" value="@Model.Content" />
+        <br /><br />
+        <label>Nume editor</label>
+        <br />
+        <input type="text" name="Editor_Name" value="@Model.Editor_Name" />
+        <br /><br />
+        <label>Data postarii</label>
+        <br />
+        <input type="text" name="Post_Date" value="@Model.Post_Date" />
+        <br /><br />
+        <br />
+        <button type="submit">Posteaza articol</button>
+    </form>
+
+    
+</div>
+
+

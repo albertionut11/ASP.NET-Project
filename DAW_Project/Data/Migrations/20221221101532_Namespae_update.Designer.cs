@@ -4,6 +4,7 @@ using DAW_Project.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAW_Project.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221221101532_Namespae_update")]
+    partial class Namespae_update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -125,7 +127,7 @@ namespace DAW_Project.Data.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("Articles", (string)null);
+                    b.ToTable("Articles");
                 });
 
             modelBuilder.Entity("DAW_Project.Models.Domain", b =>
@@ -151,7 +153,7 @@ namespace DAW_Project.Data.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("Domains", (string)null);
+                    b.ToTable("Domains");
                 });
 
             modelBuilder.Entity("DAW_Project.Models.Modification", b =>
@@ -188,7 +190,7 @@ namespace DAW_Project.Data.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("Modifications", (string)null);
+                    b.ToTable("Modifications");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
