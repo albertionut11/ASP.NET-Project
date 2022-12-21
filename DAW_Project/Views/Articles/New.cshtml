@@ -1,18 +1,57 @@
-﻿<h2>Scrie un nou articol!</h2>
-<form method="post" action="/Articles/New">
-        <label>Titlu articol</label>
-        <br />
-            <input type="text" name="Title" />
-        <br /><br />
-        <label>Continut articol</label>
-        <br />
-            <input type="text" name="Content" />
-        <br /><br />
-        <br />
-        
-    
-        <button type="submit">Posteaza articol</button>
+﻿@model DAW_Project.Models.Article
 
 
-        
-</form>
+<h2 class="text-center mt-5">Adaugare articol</h2>
+<br />
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-6 offset-3">
+
+            @using (Html.BeginForm(actionName: "New", controllerName: "Articles",
+            method: FormMethod.Post))
+            {
+
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+                @Html.Label("Title", "Titlu Articol")
+                <br />
+                @Html.TextBox("Title", null, new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+                <br />
+
+                <br />
+
+                @Html.Label("Content", "Continut Articol")
+                <br />
+                @Html.TextArea("Content", null, new { @class = "form-control" })
+
+                @Html.ValidationMessage("Content", null, new { @class = "text-danger" })
+                <br />
+
+                @Html.Label("Editor_Name", "Nume autor")
+                <br />
+                @Html.TextArea("Editor_Name", null, new { @class = "form-control" })
+                <br />
+                @Html.Label("Domain_id", "ID Domeniu")
+                @Html.TextArea("Domain_id", null, new { @class = "form-control" })
+                <br />
+                //@Html.TextArea("Content", null, new { @class = "form-control" })
+                /*
+                <label>Selectati domeniul</label>
+                @Html.DropDownListFor(m => m.Domain_id, new SelectList(Model.Dom, "Value", "Text"),
+            "Selectati domeniul", new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(m => m.Domain_id, null, new { @class = "text-danger" })
+                <br />
+                */
+
+                <br />
+
+                <button class="btn btn-success" type="submit">Adauga articol</button>
+
+            }
+
+        </div>
+    </div>
+</div>
