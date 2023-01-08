@@ -15,17 +15,16 @@
 
 @foreach (var domain in ViewBag.Domains)
 {
-    @Html.Label("Domain_name", "Denumire domeniu")
+    @Html.Label("Domain_name", "Domeniu:")
     <p>@domain.Domain_name</p>
-    @Html.Label("Domain_description", "Descriere domeniu")
+    @Html.Label("Domain_description", "Descriere:")
     <p>@domain.Domain_description</p>
-    <a class="btn alert-success" href="/Domains/Show/@domain.Id">Afisare domeniu</a>
     <a class="btn alert-success" href="/Domains/Edit/@domain.Id">Editare domeniu</a>
     <br />
     <hr />
     <br />
 }
 <br />
-<a class="btn btn-success" href="/Domains/New">Adauga o noua categorie</a>
+<a class="btn btn-success" href="/Domains/New">Adauga un nou domeniu!</a>
 <br />
 
