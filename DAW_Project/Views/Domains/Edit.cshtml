@@ -9,14 +9,22 @@
 @using (Html.BeginForm(controllerName: "Domains", actionName: "Edit", method: FormMethod.Post,
       routeValues: new { id = Model.Id }))
 {
-    @Html.Label("Domain_name", "Denumire domeniu")
+    @Html.Label("Domain_name", "Denumire:")
     <br />
     @Html.Editor("Domain_name")
-
     @Html.ValidationMessageFor(m => m.Domain_name, null, new { @class = "text-danger" })
     <br />
-
     <br />
-
+    @Html.Label("Domain_description", "Descriere:")
+    <br />
+    @Html.Editor("Domain_description")
+    @Html.ValidationMessageFor(m => m.Domain_description, null, new { @class = "text-danger" })
+    <br />
+    <br />
     <button class="btn btn-success" type="submit">Modifica domeniul</button>
 }
+<form method="post" action="/Domains/Delete/@Model.Id">
+
+    <button class="btn btn-danger" type="submit">Sterge domeniul</button>
+
+</form>

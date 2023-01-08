@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using DAW_Project.Models;
+using System.Drawing.Printing;
+using System.Collections.Specialized;
 
 namespace DAW_Project.Controllers
 {
@@ -68,11 +70,12 @@ namespace DAW_Project.Controllers
         public ActionResult Edit(int id, Domain requestDomain)
         {
             Domain domain = db.Domains.Find(id);
-
+            var errors = ModelState.Where(x => x.Value.Errors.Any())
+                .Select(x => new { x.Key, x.Value.Errors });
             if (ModelState.IsValid)
             {
-
                 domain.Domain_name = requestDomain.Domain_name;
+                domain.Domain_description = requestDomain.Domain_description;
                 db.SaveChanges();
                 TempData["message"] = "Domeniul a fost modificat!";
                 return RedirectToAction("Index");
