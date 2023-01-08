@@ -115,9 +115,16 @@ namespace DAW_Project.Controllers
             }
         }
 
-
+        public IActionResult Delete(int id)
+        {
+            Article article = db.Articles.Find(id);
+            db.Articles.Remove(article);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
 
     }
-
+    
+         
 }

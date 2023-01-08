@@ -1,31 +1,50 @@
 ﻿@model DAW_Project.Models.Article
 
 <h2 class="text-center mt-5">Editare articol</h2>
+<br />
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            @using (Html.BeginForm(actionName: "Edit", controllerName: "Articles",  
+            method: FormMethod.Post,
+            routeValues: new { id = Model.Article_Id }))
+            
+            {
+                /* @Html.HiddenFor(m => m.Id)  */
 
-<div>
 
-    <form method="post" action="/Articles/Edit">
-        <label>Titlu articol</label>
-        <br />
-        <input type="text" name="Title" value="@Model.Title" />
-        <br /><br />
-        <label>Continut articol</label>
-        <br />
-        <input type="text" name="Content" value="@Model.Content" />
-        <br /><br />
-        <label>Nume editor</label>
-        <br />
-        <input type="text" name="Editor_Name" value="@Model.Editor_Name" />
-        <br /><br />
-        <label>Data postarii</label>
-        <br />
-        <input type="text" name="Post_Date" value="@Model.Post_Date" />
-        <br /><br />
-        <br />
-        <button type="submit">Posteaza articol</button>
-    </form>
+                @Html.Label("Title", "Titlu Articol")
+                <br />
+                @Html.EditorFor(m => m.Title, new { htmlAttributes = new { @class = "form-control" } })
 
-    
+                @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger" })
+                <br />
+
+                <br />
+
+                @Html.Label("Content", "Continut Articol")
+                <br />
+                @* @Html.Editor("Content", new { htmlAttributes = new { @class = "form-control summernote" } }) *@
+                @Html.TextArea("Content", Model.Content, new { @class = "form-control summernote" })
+
+                @Html.ValidationMessageFor(m => m.Content, null, new { @class = "text-danger" })
+                <br />
+
+                <br />
+                 
+                <label>Selectati categoria</label>
+                @Html.DropDownListFor(m => m.Domain_id,
+            new SelectList(Model.Dom, "Value", "Text"),
+         
+            "Selectati categoria", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Domain_id, null, new { @class = "text-danger" })
+                <br />
+
+                <br />
+
+                <button class="btn btn-sm btn-success" type="submit">Modifica articol</button>
+
+            }
+        </div>
+    </div>
 </div>
-
-
