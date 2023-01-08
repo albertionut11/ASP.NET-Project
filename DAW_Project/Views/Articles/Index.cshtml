@@ -1,6 +1,14 @@
 ﻿<h2>AFISARE ARTICOLE</h2>
 
-@foreach (var item in ViewBag.Articles)
+<form method="GET">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search topics or keywords" name="search"
+               value="@ViewBag.SearchString">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </div>
+</form>
+
+@*@foreach (var item in ViewBag.Articles)
 {
     <div class="card" style="width: 18rem;">
       
@@ -14,21 +22,29 @@
 
              <div>@item.Post_Date</div>
 
-           
-            
         </div>
+
+
+        <a class="btn btn-success" href="/Articles/Show/@article.Id">Afisare articol</a>
     </div>
+}*@
+
+
+@foreach (var item in ViewBag.Articles)
+{
+    <div class="card" style="width: 18rem;">
+
+        <h5 class="card-title">@item.Title </h5>
+        <a class="btn btn-success" href="/Articles/Show/@item.Article_Id">Afisare articol</a>
+
+    </div>
+    <br/>
 }
 <div>
-
-    
-    <a href="/Articles/New"><button>Adaugare Articol</button></a>
-
-    <br />
-    <a href="/Articles/Edit"><button>Editare Articol</button></a>
-    <br />
-    <div>
-        <a href="/Home/Index"><button>Pagina Start</button></a>
-    </div>
-    
+    <a class="btn btn-success" href="/Articles/New">Adaugare Articol</a>
 </div>
+
+
+
+    
+ 
