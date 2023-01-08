@@ -56,42 +56,8 @@ namespace DAW_Project.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Editor,Admin")]
-        public IActionResult New()
-        {
-            Article article = new Article();
-
-           
-
-            return View(article);
-        }
-
-        // Se adauga articolul in baza de date
-        // Doar utilizatorii cu rolul de Editor sau Admin pot adauga articole in platforma
-
-        [Authorize(Roles = "Editor,Admin")]
-        [HttpPost]
-        public IActionResult New(Article article)
-        {
-            article.Post_Date = DateTime.Now;
-            article.UserID = _userManager.GetUserId(User);
-            article.Editor_Name = _userManager.GetUserName(User);
-         
-            try
-            {
-                db.Articles.Add(article);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            catch (Exception e)
-            {
-                return View();
-            }
-           
-            return View(article);
-            
-        }
-        public IEnumerable<SelectListItem> GetAllDomains()
+        
+         public IEnumerable<SelectListItem> GetAllDomains()
         {
             // generam o lista de tipul SelectListItem fara elemente
             var selectList = new List<SelectListItem>();
@@ -125,6 +91,48 @@ namespace DAW_Project.Controllers
 
             // returnam lista de categorii
             return selectList;
+        }
+
+        [Authorize(Roles = "Editor,Admin")]
+        public IActionResult New()
+        {
+            Article article = new Article();
+
+            // Se preia lista de categorii din metoda GetAllCategories()
+            article.Dom = GetAllDomains();
+            
+
+            return View(article);
+        }
+
+        // Se adauga articolul in baza de date
+        // Doar utilizatorii cu rolul de Editor sau Admin pot adauga articole in platforma
+
+        [Authorize(Roles = "Editor,Admin")]
+        [HttpPost]
+
+        public IActionResult New(Article article)
+        {
+            
+
+     
+            article.UserID = _userManager.GetUserId(User);
+
+
+            if (ModelState.IsValid)
+            {
+               
+
+                db.Articles.Add(article);
+                db.SaveChanges();
+                TempData["message"] = "Articolul a fost adaugat";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                article.Dom = GetAllDomains();
+                return View(article);
+            }
         }
 
         [HttpPost]
@@ -179,12 +187,11 @@ namespace DAW_Project.Controllers
                 if (article.UserID == _userManager.GetUserId(User) || User.IsInRole("Admin"))
                 {
                     article.Title = requestArticle.Title;
-
-                  
-
                     article.Content = requestArticle.Content;
-
                     article.Domain_id = requestArticle.Domain_id;
+                    
+                    
+           
                     TempData["message"] = "Articolul a fost modificat";
                     db.SaveChanges();
                     return RedirectToAction("Index");

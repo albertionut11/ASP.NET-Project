@@ -5,10 +5,10 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-6 offset-3">
-            @using (Html.BeginForm(actionName: "Edit", controllerName: "Articles",  
+            @using (Html.BeginForm(actionName: "Edit", controllerName: "Articles",
             method: FormMethod.Post,
             routeValues: new { id = Model.Article_Id }))
-            
+
             {
                 /* @Html.HiddenFor(m => m.Id)  */
 
@@ -31,11 +31,10 @@
                 <br />
 
                 <br />
-                 
+
                 <label>Selectati categoria</label>
                 @Html.DropDownListFor(m => m.Domain_id,
             new SelectList(Model.Dom, "Value", "Text"),
-         
             "Selectati categoria", new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Domain_id, null, new { @class = "text-danger" })
                 <br />
@@ -48,3 +47,10 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
+

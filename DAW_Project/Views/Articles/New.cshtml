@@ -32,10 +32,16 @@
                 @Html.Label("Editor_Name", "Nume autor")
                 <br />
                 @Html.TextArea("Editor_Name", null, new { @class = "form-control" })
+
+                
+                 <label>Selectati categoria</label>
+                @Html.DropDownListFor(m => m.Domain_id,
+            new SelectList(Model.Dom, "Value", "Text"),
+            "Selectati categoria", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Domain_id, null, new { @class = "text-danger" })
+
                 <br />
-                @Html.Label("Domain_id", "ID Domeniu")
-                @Html.TextArea("Domain_id", null, new { @class = "form-control" })
-                <br />
+                
                 //@Html.TextArea("Content", null, new { @class = "form-control" })
                 /*
                 <label>Selectati domeniul</label>
