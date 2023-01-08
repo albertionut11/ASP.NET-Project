@@ -27,8 +27,7 @@ serviceProvider)
                 // daca nu contine roluri, acestea se vor crea
                 context.Roles.AddRange(
                 new IdentityRole { Id = "3d73c57d-ece2-4b18-8364-162a52ff4aff", Name = "Admin", NormalizedName = "Admin".ToUpper() },
-                new IdentityRole { Id = "3f81d37a-57d8-4b84-a007-151284bc5019", Name = "Editor", NormalizedName = "Editor".ToUpper() },
-                new IdentityRole { Id = "9070d330-24fb-47eb-8acd-7b4f78f53675", Name = "User", NormalizedName = "User".ToUpper() }
+                new IdentityRole { Id = "3f81d37a-57d8-4b84-a007-151284bc5019", Name = "Editor", NormalizedName = "Editor".ToUpper() }
                 );
                 // o noua instanta pe care o vom utiliza pentru crearea parolelor utilizatorilor
                  // parolele sunt de tip hash
@@ -58,18 +57,7 @@ serviceProvider)
                     Email = "editor@test.com",
                     NormalizedUserName = "EDITOR@TEST.COM",
                     PasswordHash = hasher.HashPassword(null, "Editor1!")
-                },
-               new ApplicationUser
-               {
-                   Id = "ad6cfe04-9b55-4cc2-89ea-1d01824641c9",
-                   // primary key
-                   UserName = "user@test.com",
-                   EmailConfirmed = true,
-                   NormalizedEmail = "USER@TEST.COM",
-                   Email = "user@test.com",
-                   NormalizedUserName = "USER@TEST.COM",
-                   PasswordHash = hasher.HashPassword(null, "User1!")
-               }
+                }
                );
                 // ASOCIEREA USER-ROLE
                 context.UserRoles.AddRange(
@@ -82,11 +70,6 @@ serviceProvider)
                {
                    RoleId = "3f81d37a-57d8-4b84-a007-151284bc5019",
                    UserId = "c8803a2a-0924-4b49-bcc8-dd5d110b4582"
-               },
-               new IdentityUserRole<string>
-               {
-                   RoleId = "9070d330-24fb-47eb-8acd-7b4f78f53675",
-                   UserId = "ad6cfe04-9b55-4cc2-89ea-1d01824641c9"
                }
                 );
                 context.SaveChanges();
