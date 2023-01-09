@@ -1,5 +1,7 @@
 ﻿<h2>AFISARE ARTICOLE</h2>
 
+<br />
+@* Motorul de cautare *@
 <form method="GET">
     <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Search topics or keywords" name="search"
@@ -7,6 +9,7 @@
         <button class="btn btn-outline-success" type="submit">Search</button>
     </div>
 </form>
+
 
 @*@foreach (var item in ViewBag.Articles)
 {
@@ -30,7 +33,7 @@
 }*@
 
 
-@foreach (var item in ViewBag.Articles)
+@foreach (DAW_Project.Models.Article item in ViewBag.Articles)
 {
     <div class="card" style="width: 18rem;">
 

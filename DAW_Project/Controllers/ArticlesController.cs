@@ -37,23 +37,67 @@ namespace DAW_Project.Controllers
             _roleManager = roleManager;
         }
 
-        [Authorize(Roles = "User,Editor,Admin")]
+        //[Authorize(Roles = "User,Editor,Admin")]
+        //public IActionResult Index()
+        //{
+
+        //    var articles = db.Articles.Include("Domain")
+        //    ViewBag.Articles = articles;
+
+
+        //    return View();
+        //}
+
+
+        [Authorize(Roles = "Editor,Admin")]
         public IActionResult Index()
         {
+           
+            var articles = db.Articles.Include("Domain")
+             .Include("User").OrderBy(a => a.Post_Date);
+            
 
-            var articles = db.Articles;
+           
+            var search = "";
+            // MOTOR DE CAUTARE
+            if (Convert.ToString(HttpContext.Request.Query["search"]) != null)
+            {
+                // eliminam spatiile libere 
+                search = Convert.ToString(HttpContext.Request.Query["search"]).Trim();
+
+
+                // Cautare in articol (Title si Content)
+                List<int> articleIds = db.Articles.Where (at =>  at.Editor_Name.Contains(search) || at.Title.Contains(search) || at.Content.Contains(search) || at.Domain.Domain_name.Contains(search)).Select(a => a.Article_Id).ToList();
+
+
+                List<int> mergedIds = articleIds.ToList();
+                // Lista articolelor care contin cuvantul cautat
+                // fie in articol -> Title si Content
+                // fie in comentarii -> Content
+                articles = db.Articles.Where(article =>
+               mergedIds.Contains(article.Article_Id))
+                .Include("Domain")
+                .Include("User")
+                .OrderBy(a => a.Post_Date);
+
+
+            }
+            ViewBag.SearchString = search;
+         
             ViewBag.Articles = articles;
-
+            
 
             return View();
         }
 
 
-        [Authorize(Roles = "User,Editor,Admin")]
+        [Authorize(Roles = "Editor,Admin")]
         public IActionResult Show(int id)
         {
             Article article = db.Articles.Find(id);
+            Domain domain = db.Domains.Find(article.Domain_id);
             ViewBag.Article = article;
+            ViewBag.Domain = domain;
             return View();
         }
 
