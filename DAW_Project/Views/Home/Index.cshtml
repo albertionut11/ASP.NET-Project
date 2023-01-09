@@ -2,21 +2,18 @@
     ViewData["Title"] = "BAHAUPEDIA";
 }
 
+@foreach (DAW_Project.Models.Article item in ViewBag.Articles)
+{
+    <div class="card" style="width: 18rem;">
+
+        <h5 class="card-title">@item.Title </h5>
+        <a class="btn btn-success" href="/Articles/Show/@item.Article_Id">Afisare articol</a>
+
+    </div>
+    <br />
+}
 
 
-<div>
-    <a class="btn btn-success" href="./Articles/Index">Articole</a>
-</div>
-<br/>
-<div>
-    
-    <a class="btn btn-success" href="./Domains/Index">Domenii</a>
- 
-</div>
 
-<div class="text-center">
-    <h1 class="display-4">Bine v-am gasit!!</h1>
 
-    <p>Pentru a continua vizualizarea articolelor , va rugam sa va inregistrati pe site</p>
-</div>
 

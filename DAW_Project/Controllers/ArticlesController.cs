@@ -54,7 +54,7 @@ namespace DAW_Project.Controllers
         {
            
             var articles = db.Articles.Include("Domain")
-             .Include("User").OrderBy(a => a.Post_Date);
+             .Include("User").OrderByDescending(a => a.Post_Date);
             
 
            
@@ -202,7 +202,7 @@ namespace DAW_Project.Controllers
 
             article.Dom = GetAllDomains();
 
-            if (article.UserID == _userManager.GetUserId(User) || User.IsInRole("Admin"))
+            if (article.UserID == _userManager.GetUserId(User) || User.IsInRole("Admin") || User.IsInRole("Editor")) 
             {
                 return View(article);
             }
