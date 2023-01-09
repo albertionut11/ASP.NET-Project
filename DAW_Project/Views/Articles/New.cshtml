@@ -24,7 +24,7 @@
 
                 @Html.Label("Content", "Continut Articol")
                 <br />
-                @Html.TextArea("Content", null, new { @class = "form-control" })
+                @Html.TextArea("Content", null, new { @class = "summernote" })
 
                 @Html.ValidationMessage("Content", null, new { @class = "text-danger" })
                 <br />
@@ -42,15 +42,6 @@
 
                 <br />
                 
-                //@Html.TextArea("Content", null, new { @class = "form-control" })
-                /*
-                <label>Selectati domeniul</label>
-                @Html.DropDownListFor(m => m.Domain_id, new SelectList(Model.Dom, "Value", "Text"),
-            "Selectati domeniul", new { @class = "form-control" })
-
-                @Html.ValidationMessageFor(m => m.Domain_id, null, new { @class = "text-danger" })
-                <br />
-                */
 
                 <br />
 

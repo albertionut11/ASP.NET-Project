@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Linq;
+using Ganss.Xss;
 
 namespace DAW_Project.Controllers
 {
@@ -113,16 +114,16 @@ namespace DAW_Project.Controllers
 
         public IActionResult New(Article article)
         {
-            
+            var sanitizer = new HtmlSanitizer();
 
-     
+            article.Post_Date = DateTime.Now;
             article.UserID = _userManager.GetUserId(User);
 
 
             if (ModelState.IsValid)
             {
-               
 
+                article.Content = sanitizer.Sanitize(article.Content);
                 db.Articles.Add(article);
                 db.SaveChanges();
                 TempData["message"] = "Articolul a fost adaugat";
@@ -175,7 +176,7 @@ namespace DAW_Project.Controllers
         [Authorize(Roles = "Editor,Admin")]
         public IActionResult Edit(int id, Article requestArticle)
         {
-            
+            var sanitizer = new HtmlSanitizer();
 
             Article article = db.Articles.Find(id);
 
@@ -187,10 +188,11 @@ namespace DAW_Project.Controllers
                 if (article.UserID == _userManager.GetUserId(User) || User.IsInRole("Admin"))
                 {
                     article.Title = requestArticle.Title;
+
+                    requestArticle.Content =sanitizer.Sanitize(requestArticle.Content);
                     article.Content = requestArticle.Content;
+                    
                     article.Domain_id = requestArticle.Domain_id;
-                    
-                    
            
                     TempData["message"] = "Articolul a fost modificat";
                     db.SaveChanges();
