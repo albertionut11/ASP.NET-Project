@@ -1,8 +1,7 @@
 ﻿@model DAW_Project.Models.Article
 
-<h2>Afisare articol</h2>
+<h2>@ViewBag.Article.Title</h2>
 <br />
-<p>@ViewBag.Article.Title</p>
 <p>@ViewBag.Article.Editor_Name</p>
 <p>@Html.Raw(ViewBag.Article.Content)</p>
 <p>@ViewBag.Domain.Domain_name</p>

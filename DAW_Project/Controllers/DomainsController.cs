@@ -5,6 +5,7 @@ using System.Data;
 using DAW_Project.Models;
 using System.Drawing.Printing;
 using System.Collections.Specialized;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAW_Project.Controllers
 {
@@ -34,7 +35,24 @@ namespace DAW_Project.Controllers
         [Authorize(Roles = "Editor,Admin")]
         public ActionResult Show(int id)
         {
-            Domain domain = db.Domains.Find(id);
+            
+             Domain domain = db.Domains.Find(id);
+            var articles = db.Articles.Include("Domain")
+            .Include("User").OrderByDescending(a => a.Post_Date);
+
+            List<int> articleIds = db.Articles.Where(at =>  at.Domain_id == id ).Select(a => a.Article_Id).ToList();
+
+            ///lista cu articolele care au domeniul respectiv
+
+            List<int> mergedIds = articleIds.ToList();
+            articles = db.Articles.Where(article =>
+            mergedIds.Contains(article.Article_Id))
+            .Include("Domain")
+            .Include("User")
+            .OrderBy(a => a.Post_Date);
+
+            ViewBag.Articles = articles;
+
             return View(domain);
         }
         [Authorize(Roles = "Admin")]
