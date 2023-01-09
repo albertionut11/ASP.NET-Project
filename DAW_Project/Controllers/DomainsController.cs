@@ -8,7 +8,7 @@ using System.Collections.Specialized;
 
 namespace DAW_Project.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Editor,Admin")]
     public class DomainsController : Controller
     {
         private readonly ApplicationDbContext db;
@@ -31,18 +31,20 @@ namespace DAW_Project.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Editor,Admin")]
         public ActionResult Show(int id)
         {
             Domain domain = db.Domains.Find(id);
             return View(domain);
         }
-
+        [Authorize(Roles = "Admin")]
         public ActionResult New()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult New(Domain dom)
         {
             try
@@ -60,6 +62,7 @@ namespace DAW_Project.Controllers
             
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             Domain domain = db.Domains.Find(id);
@@ -86,6 +89,7 @@ namespace DAW_Project.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Delete(int id)
         {
