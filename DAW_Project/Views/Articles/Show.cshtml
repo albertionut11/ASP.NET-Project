@@ -1,9 +1,10 @@
-﻿<h2>Afisare articol</h2>
+﻿@model DAW_Project.Models.Article
+
+<h2>Afisare articol</h2>
 <br />
 <p>@ViewBag.Article.Title</p>
 <p>@ViewBag.Article.Editor_Name</p>
-<p>@ViewBag.Article.Content</p>
-            
+<p>@Html.Raw(ViewBag.Article.Content)</p>
 
  <a class="btn btn-success" href="/Articles/Edit/@ViewBag.Article.Article_Id">Editare Articol</a>
 
