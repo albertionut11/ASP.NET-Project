@@ -51,10 +51,11 @@ namespace DAW_Project.Controllers
         [Authorize(Roles = "Editor,Admin")]
         public IActionResult Index()
         {
-
+           
             var articles = db.Articles.Include("Domain")
              .Include("User").OrderBy(a => a.Post_Date);
             
+
            
             var search = "";
             // MOTOR DE CAUTARE
@@ -65,7 +66,7 @@ namespace DAW_Project.Controllers
 
 
                 // Cautare in articol (Title si Content)
-                List<int> articleIds = db.Articles.Where (at => at.Title.Contains(search) || at.Content.Contains(search) || at.Domain.Domain_name.Contains(search)).Select(a => a.Article_Id).ToList();
+                List<int> articleIds = db.Articles.Where (at =>  at.Editor_Name.Contains(search) || at.Title.Contains(search) || at.Content.Contains(search) || at.Domain.Domain_name.Contains(search)).Select(a => a.Article_Id).ToList();
 
 
                 List<int> mergedIds = articleIds.ToList();
@@ -81,7 +82,7 @@ namespace DAW_Project.Controllers
 
             }
             ViewBag.SearchString = search;
-
+         
             ViewBag.Articles = articles;
             
 
@@ -93,7 +94,9 @@ namespace DAW_Project.Controllers
         public IActionResult Show(int id)
         {
             Article article = db.Articles.Find(id);
+            Domain domain = db.Domains.Find(article.Domain_id);
             ViewBag.Article = article;
+            ViewBag.Domain = domain;
             return View();
         }
 
