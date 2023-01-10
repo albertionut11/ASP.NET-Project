@@ -37,18 +37,6 @@ namespace DAW_Project.Controllers
             _roleManager = roleManager;
         }
 
-        //[Authorize(Roles = "User,Editor,Admin")]
-        //public IActionResult Index()
-        //{
-
-        //    var articles = db.Articles.Include("Domain")
-        //    ViewBag.Articles = articles;
-
-
-        //    return View();
-        //}
-
-
         [Authorize(Roles = "Editor,Admin")]
         public IActionResult Index()
         {
@@ -253,10 +241,12 @@ namespace DAW_Project.Controllers
                 return View(requestArticle);
             }
         }
+        [Authorize(Roles = "Admin")]
+        public IActionResult Restrict(int id)
+        {
 
 
-
-
+        }
 
     }
     

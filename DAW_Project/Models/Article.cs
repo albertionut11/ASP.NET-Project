@@ -20,7 +20,7 @@ namespace DAW_Project.Models
         [Required(ErrorMessage = "Domeniul articolului este obligatoriu!")]
         public int? Domain_id { get; set; }
         public virtual Domain? Domain { get; set; }
-
+        /// articole vechi
         public virtual ICollection<Modification>? Modifications { get; set; }
 
         [NotMapped]
