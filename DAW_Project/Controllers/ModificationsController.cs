@@ -79,8 +79,9 @@ namespace DAW_Project.Controllers
         public IActionResult Show(int id)
         {
 
-            Article article = db.Articles.Find(id);
-            ViewBag.Article = article;
+            var modifications = db.Modifications.Where(mod => mod.Article_Id == id);
+            ViewBag.Modifications = modifications;
+
             return View();
         }
 
