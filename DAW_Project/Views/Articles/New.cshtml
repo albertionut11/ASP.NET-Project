@@ -29,10 +29,6 @@
                 @Html.ValidationMessage("Content", null, new { @class = "text-danger" })
                 <br />
 
-                @Html.Label("Editor_Name", "Nume autor")
-                <br />
-                @Html.TextArea("Editor_Name", null, new { @class = "form-control" })
-
                 
                  <label>Selectati categoria</label>
                 @Html.DropDownListFor(m => m.Domain_id,
