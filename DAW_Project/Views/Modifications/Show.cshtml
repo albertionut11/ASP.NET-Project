@@ -5,21 +5,15 @@
 }
 
 
-@model DAW_Project.Models.Modification
+@model DAW_Project.Models.Article
 
-@foreach (var item in ViewBag.Modifications)
+@foreach (var item in ViewBag.Article.Modifications)
 {
-    <div class="card" style="width: 18rem;">
-
-        <div class="card-body">
-
-            <h5 class="card-title">@item.Title </h5>
-             <h5>@item.New_Content</h5>
-
-        </div>
-        
-
-    </div>
+    <h2>@item.Title</h2>
+    <p>@item.Editor_Name</p>
+    <p>@Html.Raw(item.Content)</p>
+    <p>@item.Domain.Domain_name</p>
+    <p>@item.Date</p>
     <br />
-    
 }
+

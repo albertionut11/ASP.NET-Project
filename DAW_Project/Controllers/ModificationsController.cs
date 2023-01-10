@@ -78,10 +78,9 @@ namespace DAW_Project.Controllers
         [Authorize(Roles = "Editor,Admin")]
         public IActionResult Show(int id)
         {
-           
-            Article article = db.Articles.Find(id);
-            ViewBag.Modifications = article.Modifications;
 
+            Article article = db.Articles.Find(id);
+            ViewBag.Article = article;
             return View();
         }
 
