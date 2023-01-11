@@ -155,7 +155,7 @@ namespace DAW_Project.Controllers
 
         [Authorize(Roles = "Editor,Admin")]
         [HttpPost]
-
+        
         public IActionResult New(Article article)
         {
             var sanitizer = new HtmlSanitizer();
@@ -169,6 +169,21 @@ namespace DAW_Project.Controllers
 
                 article.Content = sanitizer.Sanitize(article.Content);
                 db.Articles.Add(article);
+
+                if (article != null)
+                {
+                    if (article.Modifications == null)
+                        article.Modifications = new List<Modification>();
+                    Modification mod = new Modification();
+                    mod.Post_Date = DateTime.Now;
+                    mod.UserID = _userManager.GetUserId(User);
+                    mod.New_Content = sanitizer.Sanitize(article.Content);
+                    mod.Modificator_Name = _userManager.GetUserName(User);
+                    mod.Article_Id = article.Article_Id;
+                    mod.Article = article;
+                    article.Modifications.Add(mod);
+                }
+
                 db.SaveChanges();
                 TempData["message"] = "Articolul a fost adaugat";
                 return RedirectToAction("Index");

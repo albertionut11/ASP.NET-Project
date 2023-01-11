@@ -37,8 +37,6 @@ namespace DAW_Project.Controllers
             _roleManager = roleManager;
         }
 
-
-
         public IEnumerable<SelectListItem> GetAllDomains()
         {
             // generam o lista de tipul SelectListItem fara elemente
@@ -79,14 +77,11 @@ namespace DAW_Project.Controllers
         public IActionResult Show(int id)
         {
 
-            var modifications = db.Modifications.Where(mod => mod.Article_Id == id);
+            var modifications = db.Modifications.Where(mod => mod.Article_Id == id).OrderByDescending(mod => mod.Post_Date);
             ViewBag.Modifications = modifications;
 
             return View();
         }
-
-
-
 
     }
 }
