@@ -20,6 +20,7 @@ namespace DAW_Project.Models
                 // Acesta metoda trebuie sa se execute o singura data
                 if (context.Roles.Any())
                 {
+                  /* am incercat sa adaug un rol nou dar n-am reusit  
                     var hasherr = new PasswordHasher<ApplicationUser>();
                     context.Roles.AddRange(new IdentityRole { Id = "5sbg431b-3agi-3u65-oo1e-72uzx0u23jk9", Name = "Registered", NormalizedName = "Registered".ToUpper() });
                     context.Users.AddRange(
@@ -41,14 +42,14 @@ namespace DAW_Project.Models
                         RoleId = "5sbg431b-3agi-3u65-oo1e-72uzx0u23jk9",
                         UserId = "af8nj23o-i7f2-3m0h-5yux-de5h218zz5o2"
                     });
+                  */
                     return; // baza de date contine deja roluri
                 }
                 // CREAREA ROLURILOR IN BD
                 // daca nu contine roluri, acestea se vor crea
                 context.Roles.AddRange(
                 new IdentityRole { Id = "3d73c57d-ece2-4b18-8364-162a52ff4aff", Name = "Admin", NormalizedName = "Admin".ToUpper() },
-                new IdentityRole { Id = "3f81d37a-57d8-4b84-a007-151284bc5019", Name = "Editor", NormalizedName = "Editor".ToUpper() },
-                new IdentityRole { Id = "5sbg431b-3agi-3u65-oo1e-72uzx0u23jk9", Name = "Registered", NormalizedName = "Registered".ToUpper() }
+                new IdentityRole { Id = "3f81d37a-57d8-4b84-a007-151284bc5019", Name = "Editor", NormalizedName = "Editor".ToUpper() }
                 );
                 // o noua instanta pe care o vom utiliza pentru crearea parolelor utilizatorilor
                  // parolele sunt de tip hash
@@ -78,17 +79,6 @@ namespace DAW_Project.Models
                     Email = "editor@test.com",
                     NormalizedUserName = "EDITOR@TEST.COM",
                     PasswordHash = hasher.HashPassword(null, "Editor1!")
-                },
-                new ApplicationUser
-                {
-                    Id = "af8nj23o-i7f2-3m0h-5yux-de5h218zz5o2",
-                    // primary key
-                    UserName = "registered@test.com",
-                    EmailConfirmed = true,
-                    NormalizedEmail = "REGISTERED@TEST.COM",
-                    Email = "registered@test.com",
-                    NormalizedUserName = "REGISTERED@TEST.COM",
-                    PasswordHash = hasher.HashPassword(null, "Register1!")
                 }
                );
                 // ASOCIEREA USER-ROLE
@@ -102,11 +92,6 @@ namespace DAW_Project.Models
                {
                    RoleId = "3f81d37a-57d8-4b84-a007-151284bc5019",
                    UserId = "c8803a2a-0924-4b49-bcc8-dd5d110b4582"
-               },
-               new IdentityUserRole<string>
-               {
-                   RoleId = "5sbg431b-3agi-3u65-oo1e-72uzx0u23jk9",
-                   UserId = "af8nj23o-i7f2-3m0h-5yux-de5h218zz5o2"
                });
                 context.SaveChanges();
             }

@@ -9,8 +9,13 @@
 {  <div class="card" style="width: 18rem;">
       <h5>@item.UserName</h5>
         <form method="post" action="/Users/Delete/@item.Id">
-
             <button class="btn btn-danger" type="submit">Sterge Utilizator</button>
         </form>
+        @*
+        <form method="post" action="/Users/ChangeRole/@item.Id">
+            <button class="btn btn-danger" type="submit">Schimba Rol</button>
+        </form>
+        *@
+
     </div>
 }
