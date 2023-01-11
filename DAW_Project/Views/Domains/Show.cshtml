@@ -17,6 +17,8 @@
         <div class="card-body">
 
             <h5 class="card-title">@item.Title </h5>
+            <p><b>Data: </b>@String.Format("{0:dd MMMM yyyy}", item.Post_Date)</p>
+            <p><b>Autor:</b> @item.Editor_Name</p>
             <a class="btn btn-success" href="/Articles/Show/@item.Article_Id">Afisare articol</a>
 
         </div>
