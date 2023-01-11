@@ -10,8 +10,8 @@
 @foreach (var item in ViewBag.Modifications)
 {
     <div class="card-body">
-
-    <p>Continut modificat : @Html.Raw(@item.New_Content)</p>
+     <h5>Continut anterior:</h5>
+    <p> @Html.Raw(@item.New_Content)</p>
 
     </div>
 
