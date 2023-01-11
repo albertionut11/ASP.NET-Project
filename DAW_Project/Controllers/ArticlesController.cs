@@ -128,7 +128,7 @@ namespace DAW_Project.Controllers
         public IActionResult New()
         {
             Article article = new Article();
-
+            
             // Se preia lista de categorii din metoda GetAllCategories()
             article.Dom = GetAllDomains();
             
@@ -141,7 +141,7 @@ namespace DAW_Project.Controllers
 
         [Authorize(Roles = "Editor,Admin")]
         [HttpPost]
-
+        
         public IActionResult New(Article article)
         {
             var sanitizer = new HtmlSanitizer();
@@ -156,6 +156,21 @@ namespace DAW_Project.Controllers
 
                 article.Content = sanitizer.Sanitize(article.Content);
                 db.Articles.Add(article);
+
+                if (article != null)
+                {
+                    if (article.Modifications == null)
+                        article.Modifications = new List<Modification>();
+                    Modification mod = new Modification();
+                    mod.Post_Date = DateTime.Now;
+                    mod.UserID = _userManager.GetUserId(User);
+                    mod.New_Content = sanitizer.Sanitize(article.Content);
+                    mod.Modificator_Name = _userManager.GetUserName(User);
+                    mod.Article_Id = article.Article_Id;
+                    mod.Article = article;
+                    article.Modifications.Add(mod);
+                }
+
                 db.SaveChanges();
                 TempData["message"] = "Articolul a fost adaugat";
                 return RedirectToAction("Index");
@@ -182,7 +197,8 @@ namespace DAW_Project.Controllers
         [Authorize(Roles = "Editor,Admin")]
         public IActionResult Edit(int id)
         {
-
+            Modification mod = new Modification();
+            
             Article article = db.Articles.Include("Domain")
                                         .Where(art => art.Article_Id == id)
                                         .First();
@@ -210,6 +226,23 @@ namespace DAW_Project.Controllers
             var sanitizer = new HtmlSanitizer();
 
             Article article = db.Articles.Find(id);
+            if (article != null)
+            {
+                if (article.Modifications == null)
+                    article.Modifications = new List<Modification>();
+                Modification mod = new Modification();
+                mod.Post_Date = DateTime.Now;
+                mod.UserID = _userManager.GetUserId(User);
+                mod.New_Content = sanitizer.Sanitize(requestArticle.Content);
+                mod.Modificator_Name = _userManager.GetUserName(User);
+                mod.Article_Id = id;
+                mod.Article = article;
+                article.Modifications.Add(mod);
+            }
+  
+            db.SaveChanges();
+
+
 
             var errors = ModelState.Where(x => x.Value.Errors.Any())
                 .Select(x => new { x.Key, x.Value.Errors });
