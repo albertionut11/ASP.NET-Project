@@ -1,20 +1,17 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-
+﻿<h3 align="center">Versiunile vechi ale articolului</h3>
 
 @model DAW_Project.Models.Modification
 
 @foreach (var item in ViewBag.Modifications)
 {
-    <div class="card-body">
-     <h5>Continut anterior:</h5>
-    <p> @Html.Raw(@item.New_Content)</p>
+     <div class="card" style="width: 80rem;">
+        <div class="card-body">
+        <p><b>Data: </b> @String.Format("{0:dd MMMM yyyy}", item.Post_Date)</p>
+        <p><b>Autorul modificarii: </b>@item.Modificator_Name</p>
+        <p><b>Continut modificat:</b> @Html.Raw(@item.New_Content)</p>
 
+        </div>
     </div>
-
     <br />
 }
 

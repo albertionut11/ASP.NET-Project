@@ -1,4 +1,4 @@
-﻿<h2>AFISARE ARTICOLE</h2>
+﻿<h1 align=center>BAHAUPEDIA</h1>
 
 <br />
 @* Motorul de cautare *@
@@ -10,21 +10,17 @@
     </div>
 </form>
 
-
-
-
 @foreach (DAW_Project.Models.Article item in ViewBag.Articles)
 {
-    <div class="card" >
+    <div class="card" style="width: 80rem;">
 
         <div class="card-body">
 
-        <h5 class="card-title" align ="center" >@item.Title </h5>
-       <p>
-            @Html.Raw(@item.Content)
-       </p> 
-
-        <a class="btn alert-success" href="/Articles/Show/@item.Article_Id">Afisare articol</a>
+            <h2 align="center" class="card-title"> <b>@item.Title</b> </h2>
+            <p><b>Data: </b>@String.Format("{0:dd MMMM yyyy}", item.Post_Date)</p>
+            <p><b>Domeniu:</b> @item.Domain.Domain_name</p>
+            <p><b>Autor:</b> @item.Editor_Name</p>
+            <a class="btn btn-success" href="/Articles/Show/@item.Article_Id" style="float: right;">Afisare articol</a>
         
         </div>
         
