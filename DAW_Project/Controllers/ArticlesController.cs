@@ -155,7 +155,7 @@ namespace DAW_Project.Controllers
 
         [Authorize(Roles = "Editor,Admin")]
         [HttpPost]
-
+        
         public IActionResult New(Article article)
         {
             var sanitizer = new HtmlSanitizer();
