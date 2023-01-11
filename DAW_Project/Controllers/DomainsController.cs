@@ -61,6 +61,56 @@ namespace DAW_Project.Controllers
             return View();
         }
 
+
+        [Authorize(Roles = "Editor,Admin")]
+        public ActionResult Sort(int id)
+        {
+            Domain domain = db.Domains.Find(id);
+            var articles = db.Articles.Include("Domain")
+            .Include("User").OrderBy(a => a.Title);
+
+            List<int> articleIds = db.Articles.Where(at => at.Domain_id == id).Select(a => a.Article_Id).ToList();
+
+            ///lista cu articolele care au domeniul respectiv
+
+            List<int> mergedIds = articleIds.ToList();
+            articles = db.Articles.Where(article =>
+            mergedIds.Contains(article.Article_Id))
+            .Include("Domain")
+            .Include("User")
+            .OrderBy(a => a.Title);
+
+            ViewBag.Articles = articles;
+
+
+            return View(domain);
+        }
+
+
+        [Authorize(Roles = "Editor,Admin")]
+        public ActionResult SortByDate(int id)
+        {
+            Domain domain = db.Domains.Find(id);
+            var articles = db.Articles.Include("Domain")
+            .Include("User").OrderBy(a => a.Post_Date);
+
+            List<int> articleIds = db.Articles.Where(at => at.Domain_id == id).Select(a => a.Article_Id).ToList();
+
+            ///lista cu articolele care au domeniul respectiv
+
+            List<int> mergedIds = articleIds.ToList();
+            articles = db.Articles.Where(article =>
+            mergedIds.Contains(article.Article_Id))
+            .Include("Domain")
+            .Include("User")
+            .OrderBy(a => a.Post_Date);
+
+            ViewBag.Articles = articles;
+
+
+            return View(domain);
+        }
+
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public ActionResult New(Domain dom)

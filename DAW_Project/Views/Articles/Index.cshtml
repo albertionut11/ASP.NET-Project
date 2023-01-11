@@ -10,7 +10,6 @@
     </div>
 </form>
 
-
 @foreach (DAW_Project.Models.Article item in ViewBag.Articles)
 {
     <div class="card" style="width: 80rem;">
@@ -24,12 +23,12 @@
             <a class="btn btn-success" href="/Articles/Show/@item.Article_Id" style="float: right;">Afisare articol</a>
         
         </div>
-
+        
 
     </div>
     <br/>
 }
-<div>
+<div class="right">
     <a class="btn btn-success" href="/Articles/New">Adaugare Articol</a>
 </div>
 

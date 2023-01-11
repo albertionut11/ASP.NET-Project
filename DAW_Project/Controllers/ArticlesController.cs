@@ -182,9 +182,8 @@ namespace DAW_Project.Controllers
             }
         }
 
-        [HttpPost]
+
         [Authorize(Roles = "Editor,Admin")]
-       
         public IActionResult Delete(int id)
         {
             Article article = db.Articles.Find(id);

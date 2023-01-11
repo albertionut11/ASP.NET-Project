@@ -1,25 +1,22 @@
 ﻿@model DAW_Project.Models.Article
 
-<h2>@ViewBag.Article.Title</h2>
+<h1 align="center">@ViewBag.Article.Title</h1>
+<h5 align ="center"> @ViewBag.Article.Editor_Name</h5>
 <br />
-<p>@ViewBag.Article.Editor_Name</p>
 <p>@Html.Raw(ViewBag.Article.Content)</p>
-<p>@ViewBag.Domain.Domain_name</p>
-
-
- <a class="btn btn-success" href="/Articles/Edit/@ViewBag.Article.Article_Id">Editare Articol</a>
-
-<form method="post" action="/Articles/Delete/@ViewBag.Article.Article_Id">
-
-<button class="btn btn-danger" type="submit">Sterge articol</button>
-
- </form>
- <br />
-
-<a class="btn btn-success" href="/Modifications/Show/@ViewBag.Article.Article_Id">Afisare modificari</a>
-
 <br />
-<a href="/Articles/Index">Afisare articole</a>
 
+<div>
+ <a class="btn btn-success" href="/Modifications/Show/@ViewBag.Article.Article_Id">Afisare modificari</a>
+<a class="btn btn-success" href="/Articles/Edit/@ViewBag.Article.Article_Id">Editare Articol</a>
+<a class="btn btn-danger" href="/Articles/Delete/@ViewBag.Article.Article_Id">Stergere Articol</a>
+@*<a>
+<form method="post" action="/Articles/Delete/@ViewBag.Article.Article_Id">
+    
+<button class="btn btn-danger" type="submit">Sterge articol</button>
+ </form>
+ </a>
+ *@
+</div>
 
 
