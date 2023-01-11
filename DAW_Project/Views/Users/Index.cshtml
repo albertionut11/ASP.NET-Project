@@ -3,14 +3,18 @@
 *@
 @{
 }
+<h1 align="center">Utilizatori</h1>
 
 
 @foreach(var item in ViewBag.Users)
 {  <div class="card" style="width: 18rem;">
-      <h5>@item.UserName</h5>
-        <form method="post" action="/Users/Delete/@item.Id">
-            <button class="btn btn-danger" type="submit">Sterge Utilizator</button>
-        </form>
+
+        <div style="display: flex;">
+            <p><b>Utilizator </b>: @item.UserName</p>
+            <form method="post" action="/Users/Delete/@item.Id">
+                <button class="btn btn-danger" type="submit">Sterge Utilizator</button>
+            </form>
+        </div>
         @*
         <form method="post" action="/Users/ChangeRole/@item.Id">
             <button class="btn btn-danger" type="submit">Schimba Rol</button>

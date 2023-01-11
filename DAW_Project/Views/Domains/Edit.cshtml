@@ -21,10 +21,10 @@
     @Html.ValidationMessageFor(m => m.Domain_description, null, new { @class = "text-danger" })
     <br />
     <br />
-    <button class="btn btn-success" type="submit">Modifica domeniul</button>
+    <button class="btn btn-success same-size" type="submit">Modifica domeniul</button>
 }
 <form method="post" action="/Domains/Delete/@Model.Id">
 
-    <button class="btn btn-danger" type="submit">Sterge domeniul</button>
+    <button class="btn btn-danger same-size" type="submit">Sterge domeniul</button>
 
 </form>
