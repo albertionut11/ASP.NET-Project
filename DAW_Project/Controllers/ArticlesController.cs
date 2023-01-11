@@ -241,12 +241,6 @@ namespace DAW_Project.Controllers
                 return View(requestArticle);
             }
         }
-        [Authorize(Roles = "Admin")]
-        public IActionResult Restrict(int id)
-        {
-
-
-        }
 
     }
     

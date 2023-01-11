@@ -2,12 +2,7 @@
 
 <h2>@ViewBag.Article.Title</h2>
 <br />
-<p>@ViewBag.Article.Editor_Name
-    @if (User.IsInRole("Admin"))
-    {
-        <a class="btn alert-success" href="/Articles/Restrict/">Restrictioneaza acces</a>
-    }
-</p>
+<p>@ViewBag.Article.Editor_Name</p>
 <p>@Html.Raw(ViewBag.Article.Content)</p>
 <p>@ViewBag.Domain.Domain_name</p>
 
