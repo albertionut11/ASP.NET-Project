@@ -37,26 +37,12 @@ namespace DAW_Project.Controllers
             _roleManager = roleManager;
         }
 
-        //[Authorize(Roles = "User,Editor,Admin")]
-        //public IActionResult Index()
-        //{
-
-        //    var articles = db.Articles.Include("Domain")
-        //    ViewBag.Articles = articles;
-
-
-        //    return View();
-        //}
-
-
         [Authorize(Roles = "Editor,Admin")]
         public IActionResult Index()
         {
            
             var articles = db.Articles.Include("Domain")
              .Include("User").OrderByDescending(a => a.Post_Date);
-            
-
            
             var search = "";
             // MOTOR DE CAUTARE
@@ -85,7 +71,7 @@ namespace DAW_Project.Controllers
             ViewBag.SearchString = search;
          
             ViewBag.Articles = articles;
-            
+
 
             return View();
         }
@@ -162,6 +148,7 @@ namespace DAW_Project.Controllers
 
             article.Post_Date = DateTime.Now;
             article.UserID = _userManager.GetUserId(User);
+            article.Editor_Name = _userManager.GetUserName(User);
 
 
             if (ModelState.IsValid)
@@ -287,10 +274,6 @@ namespace DAW_Project.Controllers
                 return View(requestArticle);
             }
         }
-
-
-
-
 
     }
     

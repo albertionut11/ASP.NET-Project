@@ -19,8 +19,10 @@
     <p>@domain.Domain_name</p>
     @Html.Label("Domain_description", "Descriere:")
     <p>@domain.Domain_description</p>
-    <a class="btn alert-success" href="/Domains/Edit/@domain.Id">Editare domeniu</a>
     <a class="btn alert-success" href="/Domains/Show/@domain.Id">Afisare articole</a>
+    @if(User.IsInRole("Admin")){
+        <a class="btn alert-success" href="/Domains/Edit/@domain.Id">Editare domeniu</a>
+    }
     <br />
     <hr />
     <br />
