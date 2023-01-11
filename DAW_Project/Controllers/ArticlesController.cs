@@ -242,8 +242,6 @@ namespace DAW_Project.Controllers
   
             db.SaveChanges();
 
-
-
             var errors = ModelState.Where(x => x.Value.Errors.Any())
                 .Select(x => new { x.Key, x.Value.Errors });
 
@@ -258,7 +256,6 @@ namespace DAW_Project.Controllers
                     
                     article.Domain_id = requestArticle.Domain_id;
            
-                    TempData["message"] = "Articolul a fost modificat";
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }

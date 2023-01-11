@@ -1,22 +1,13 @@
 ﻿@{
     ViewBag.Title = "Lista domenii";
 }
-
 <h2>@ViewBag.Title</h2>
-<br />
-
-@if (TempData.ContainsKey("message"))
-{
-    <h1>@ViewBag.message</h1>
-}
-
-
 <br />
 
 @foreach (var domain in ViewBag.Domains)
 {
     @Html.Label("Domain_name", "Domeniu:")
-    <p>@domain.Domain_name</p>
+    <p><b>@domain.Domain_name</b></p>
     @Html.Label("Domain_description", "Descriere:")
     <p>@domain.Domain_description</p>
     <a class="btn alert-success" href="/Domains/Show/@domain.Id">Afisare articole</a>

@@ -20,3 +20,9 @@ body {
 .note-editor .dropdown-toggle::after {
     display: none;
 }
+.same-size {
+    width: 200px;
+    height: 30px;
+    line-height: 15px; /* same as the height of the button */
+    text-align: center;
+}
