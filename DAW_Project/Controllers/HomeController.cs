@@ -29,7 +29,6 @@ namespace DAW_Project.Controllers
             db = context;
 
             _userManager = userManager;
-
             _roleManager = roleManager;
             _logger = logger;
 
@@ -41,12 +40,6 @@ namespace DAW_Project.Controllers
             {
                 return RedirectToAction("Index", "Articles");
             }
-
-            var articles = db.Articles.Include("Domain")
-            .Include("User").OrderByDescending(a => a.Post_Date);
-
-            ViewBag.Articles = articles;
-          
 
             return View();
         }
